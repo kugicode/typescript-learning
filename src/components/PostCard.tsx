@@ -43,6 +43,7 @@ setAllComment(allComment.filter((c) => c !== commentToDelete))
     <div>
       <p>{newPost.username}</p>
       <p>{newPost.content}</p>
+      <p style={newPost.category === "manga" ? {color: "red"  } : newPost.category === "code" ? {color: "green"}: {color: "blue"}}>{newPost.category}</p>
       <button onClick={() => setIsEditing(true)}>Edit</button>
       {isEditting ? ( <> <input value={editableContent} onChange={(e) => setEditableContent(e.target.value)} /> <button onClick={() => setIsEditing(false)}>Save</button>  </> )  : <p>{ editableContent }</p>}
       <p>{getPostStatus(newPost.isPublished)}</p>
@@ -52,7 +53,7 @@ setAllComment(allComment.filter((c) => c !== commentToDelete))
       <button onClick={() => setIsBookmarked(!isBookmarked)}>
         { isBookmarked ? "Saved ✅": "Bookmark 🔖" }</button>
         <input type="text" placeholder="type..." value={comment} onChange={ handleTextChange }/>
-        <button onClick={handleAddComment}>Post comment</button>
+        <button onClick={handleAddComment} disabled={comment === ''}>Post comment</button>
         {allComment.map((m) => (
         <p key={m}>{m} <button onClick={() => handleDeleteComment(m)}>x</button> 
         </p>
