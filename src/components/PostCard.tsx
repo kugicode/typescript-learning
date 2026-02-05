@@ -33,8 +33,8 @@ const handleAddComment = () => {
   setComment("");
 }
 
-const handleDeleteComment = (commentToDelete : string) => {
-setAllComment(allComment.filter((c) => c !== commentToDelete))
+const handleDeleteComment = (commentToDelete : number) => {
+setAllComment(allComment.filter((c, index) => index !== commentToDelete))
 
 }
 
@@ -54,12 +54,12 @@ setAllComment(allComment.filter((c) => c !== commentToDelete))
         { isBookmarked ? "Saved ✅": "Bookmark 🔖" }</button>
         <input type="text" placeholder="type..." value={comment} onChange={ handleTextChange }/>
         <button onClick={handleAddComment} disabled={comment === ''}>Post comment</button>
-        {allComment.map((m) => (
-        <p key={m}>{m} <button onClick={() => handleDeleteComment(m)}>x</button> 
+        {allComment.map((m, index) => (
+        <p key={index}>{m} <button onClick={() => handleDeleteComment(index)}>x</button> 
         </p>
        
         ))}
-        <p>{ comment }</p>
+        <p>{ comment }</p>col
     </div>
   )
 }
